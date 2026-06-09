@@ -71,6 +71,16 @@ export default {
     economic_milestones: 'Economic Milestones (1958-2022)',
     economic_milestones_desc: 'Great Leap Forward, reform, GDP surpassing Japan to Evergrande crisis',
   },
+  export: {
+    title: 'Export',
+    csv: 'Export CSV',
+    pdf: 'Export PDF',
+    csv_all: 'Export All as CSV',
+    pdf_all: 'Export All as PDF',
+    csv_event: 'Export as CSV',
+    pdf_event: 'Export as PDF',
+    filter_hint: 'Filters applied',
+  },
   stats: {
     title: 'Statistics Dashboard',
     subtitle: 'Data overview of historical events',

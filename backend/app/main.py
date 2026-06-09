@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings
 from .database import Base, engine
-from .routers import events, crawl, seed_api
+from .routers import events, crawl, seed_api, export as export_router
 
 
 @asynccontextmanager
@@ -31,6 +31,7 @@ app.add_middleware(
 app.include_router(events.router)
 app.include_router(crawl.router)
 app.include_router(seed_api.router)
+app.include_router(export_router.router)
 
 
 @app.get("/api/health")

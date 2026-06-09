@@ -32,3 +32,26 @@ services:
     depends_on:
       - backend
     restart: unless-stopped
+
+  # PostgreSQL (production use)
+  # Uncomment and run `docker compose --profile pg up` to use PostgreSQL
+  # db:
+  #   image: postgres:16-alpine
+  #   profiles: ["pg"]
+  #   container_name: china-wall-db
+  #   environment:
+  #     - POSTGRES_DB=chinawall
+  #     - POSTGRES_USER=chinawall
+  #     - POSTGRES_PASSWORD=chinawall_secret
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U chinawall"]
+  #     interval: 5s
+  #     timeout: 5s
+  #     retries: 5
+
+# volumes:
+#   pgdata:

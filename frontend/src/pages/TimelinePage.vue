@@ -2,7 +2,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { fetchEvents, fetchCategories, fetchTags } from '@/utils/api'
+import { fetchEvents, fetchCategories, fetchTags, getExportEventsCsvUrl, getExportEventsPdfUrl, downloadUrl } from '@/utils/api'
 import type { EventListItem } from '@/types/event'
 
 const { locale } = useI18n()
@@ -154,6 +154,18 @@ onMounted(async () => {
     <button v-if="hasActiveFilters" class="clear-btn" @click="clearFilters">
       ✕ {{ $t('search.clear') }}
     </button>
+
+    <div class="export-section">
+      <h3>{{ $t('export.title') }}</h3>
+      <div class="export-buttons">
+        <button class="export-btn" @click="downloadUrl(getExportEventsCsvUrl({ lang: locale, category: selectedCategory || undefined, q: searchQuery || undefined }), `events_${locale}.csv`)">
+          {{ $t('export.csv_all') }}
+        </button>
+        <button class="export-btn" @click="downloadUrl(getExportEventsPdfUrl({ lang: locale, category: selectedCategory || undefined }), `events_${locale}.pdf`)">
+          {{ $t('export.pdf_all') }}
+        </button>
+      </div>
+    </div>
   </aside>
   <div class="content">
     <h1 class="page-title">{{ $t('timeline.title') }}</h1>
@@ -249,5 +261,42 @@ onMounted(async () => {
 .clear-btn:hover {
   background: var(--color-tag);
   color: var(--color-primary);
+}
+
+.export-section {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+.export-section h3 {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-text-secondary);
+}
+
+.export-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.export-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  text-align: center;
+}
+
+.export-btn:hover {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
 }
 </style>

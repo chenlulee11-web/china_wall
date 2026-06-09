@@ -71,6 +71,16 @@ export default {
     economic_milestones: '経済の重要節目 (1958-2022)',
     economic_milestones_desc: '大躍進、改革開放、GDP世界2位から恒大危機まで',
   },
+  export: {
+    title: 'エクスポート',
+    csv: 'CSV出力',
+    pdf: 'PDF出力',
+    csv_all: 'すべてをCSV出力',
+    pdf_all: 'すべてをPDF出力',
+    csv_event: 'CSVで出力',
+    pdf_event: 'PDFで出力',
+    filter_hint: 'フィルター適用中',
+  },
   stats: {
     title: '統計ダッシュボード',
     subtitle: '歴史イベントのデータ概要',

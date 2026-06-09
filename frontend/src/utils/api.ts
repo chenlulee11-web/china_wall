@@ -65,4 +65,51 @@ export async function fetchStats(): Promise<EventStats> {
   return res.data
 }
 
+export function getExportEventsCsvUrl(params: {
+  lang?: string
+  category?: string
+  q?: string
+  date_from?: string
+  date_to?: string
+} = {}): string {
+  const qs = new URLSearchParams()
+  if (params.lang) qs.set('lang', params.lang)
+  if (params.category) qs.set('category', params.category)
+  if (params.q) qs.set('q', params.q)
+  if (params.date_from) qs.set('date_from', params.date_from)
+  if (params.date_to) qs.set('date_to', params.date_to)
+  const query = qs.toString()
+  return `/api/export/events/csv${query ? '?' + query : ''}`
+}
+
+export function getExportEventCsvUrl(id: string, lang?: string): string {
+  const qs = lang ? `?lang=${lang}` : ''
+  return `/api/export/events/${id}/csv${qs}`
+}
+
+export function getExportEventsPdfUrl(params: {
+  lang?: string
+  category?: string
+} = {}): string {
+  const qs = new URLSearchParams()
+  if (params.lang) qs.set('lang', params.lang)
+  if (params.category) qs.set('category', params.category)
+  const query = qs.toString()
+  return `/api/export/events/pdf${query ? '?' + query : ''}`
+}
+
+export function getExportEventPdfUrl(id: string, lang?: string): string {
+  const qs = lang ? `?lang=${lang}` : ''
+  return `/api/export/events/${id}/pdf${qs}`
+}
+
+export function downloadUrl(url: string, filename: string) {
+  const a = document.createElement('a')
+  a.href = url
+  a.download = filename
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+}
+
 export default api

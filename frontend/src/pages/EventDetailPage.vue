@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { fetchEvent } from '@/utils/api'
+import { fetchEvent, getExportEventCsvUrl, getExportEventPdfUrl, downloadUrl } from '@/utils/api'
 import type { EventDetail } from '@/types/event'
 
 const route = useRoute()
@@ -62,6 +62,10 @@ onMounted(async () => {
       <div class="detail-header">
         <a class="back-link" @click="router.push('/timeline')">&larr; {{ $t('event.back') }}</a>
         <h1>{{ title }}</h1>
+        <div class="export-buttons">
+          <button class="export-btn" @click="downloadUrl(getExportEventCsvUrl(event.id, locale), `event_${event.id}_${locale}.csv`)">{{ $t('export.csv_event') }}</button>
+          <button class="export-btn" @click="downloadUrl(getExportEventPdfUrl(event.id, locale), `event_${event.id}_${locale}.pdf`)">{{ $t('export.pdf_event') }}</button>
+        </div>
         <p class="page-subtitle">
           {{ formatDate(event.date, event.date_precision) }}
           <template v-if="event.date_end">
@@ -191,5 +195,28 @@ onMounted(async () => {
   font-size: 14px;
   line-height: 1.7;
   white-space: pre-line;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.export-btn {
+  padding: 6px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.export-btn:hover {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
 }
 </style>

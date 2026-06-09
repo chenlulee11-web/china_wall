@@ -71,6 +71,16 @@ export default {
     economic_milestones: '경제 주요 이정표 (1958-2022)',
     economic_milestones_desc: '대약진, 개혁개방, GDP 세계 2위에서 헝다 위기까지',
   },
+  export: {
+    title: '내보내기',
+    csv: 'CSV 내보내기',
+    pdf: 'PDF 내보내기',
+    csv_all: '모두 CSV로 내보내기',
+    pdf_all: '모두 PDF로 내보내기',
+    csv_event: 'CSV로 내보내기',
+    pdf_event: 'PDF로 내보내기',
+    filter_hint: '필터 적용됨',
+  },
   stats: {
     title: '통계 대시보드',
     subtitle: '역사 이벤트 데이터 개요',

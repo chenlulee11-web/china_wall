@@ -136,6 +136,10 @@
 | DELETE | `/api/events/{id}` | 刪除事件 |
 | POST | `/api/crawl/start` | 啟動爬蟲 (source: `wikipedia` / `wikipedia_crosslang` / `news`) |
 | POST | `/api/seed` | 匯入 seed 資料 |
+| GET | `/api/export/events/csv` | 匯出事件 CSV (支援篩選) |
+| GET | `/api/export/events/{id}/csv` | 匯出單一事件 CSV |
+| GET | `/api/export/events/pdf` | 匯出事件 PDF (支援分類篩選) |
+| GET | `/api/export/events/{id}/pdf` | 匯出單一事件 PDF (含觀點/來源) |
 
 ---
 
@@ -174,10 +178,21 @@
 
 ### Phase 5 — 維運
 - [x] 單元測試 (pytest backend, vitest frontend) — 19 項後端測試 + 4 項前端測試全部通過
-- [ ] PostgreSQL 遷移 (正式部署)
-- [ ] CI/CD pipeline
-- [ ] 靜態匯出功能 (PDF/CSV)
-- [ ] API 文件自動生成 (Swagger 已內建)
+- [x] PostgreSQL 遷移 (正式部署) — Alembic 設定完成，含初始遷移腳本 (`alembic/versions/`)
+  - `docker-compose.yml` 含 PostgreSQL 註解設定 (`docker compose --profile pg up`)
+  - `database.py` 自動偵測 SQLite/PostgreSQL，調整 `check_same_thread`
+  - 支援 `DATABASE_URL=postgresql://user:pass@host/db` 環境變數
+- [x] CI/CD pipeline — GitHub Actions (`.github/workflows/ci.yml`)
+  - 後端：Python 3.13, pytest + coverage
+  - 前端：Node 22, vue-tsc type check, vitest, vite build
+  - 觸發條件：push / pull_request to main
+- [x] 靜態匯出功能 (PDF/CSV)
+  - `GET /api/export/events/csv` — 全部事件 CSV（支援篩選）
+  - `GET /api/export/events/{id}/csv` — 單一事件 CSV
+  - `GET /api/export/events/pdf` — 全部事件 PDF（支援 category 篩選）
+  - `GET /api/export/events/{id}/pdf` — 單一事件 PDF（含觀點、來源）
+  - 前端時間軸側欄與事件詳情頁皆有匯出按鈕
+- [x] API 文件自動生成 (Swagger 已內建 — FastAPI OpenAPI)
 
 ---
 
@@ -186,10 +201,17 @@
 ```
 china_wall/
 ├── PROGRESS.md              # 本檔案 (開發進度)
-├── docker-compose.yml       # Docker 開發環境 (backend + frontend)
+├── docker-compose.yml       # Docker 開發環境 (backend + frontend + optional PostgreSQL)
+├── .github/workflows/ci.yml # GitHub Actions CI/CD
 ├── backend/
 │   ├── requirements.txt
 │   ├── .env
+│   ├── .env.example
+│   ├── alembic.ini
+│   ├── alembic/
+│   │   ├── env.py
+│   │   ├── script.py.mako
+│   │   └── versions/460317442c62_initial_schema.py
 │   ├── data/
 │   │   └── china_wall.db    # SQLite 資料庫
 │   ├── app/

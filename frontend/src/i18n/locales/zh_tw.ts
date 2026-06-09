@@ -71,6 +71,16 @@ export default {
     economic_milestones: '經濟重大里程碑 (1958-2022)',
     economic_milestones_desc: '大躍進、改革開放、GDP超日本到恒大危機',
   },
+  export: {
+    title: '匯出',
+    csv: '匯出 CSV',
+    pdf: '匯出 PDF',
+    csv_all: '匯出全部為 CSV',
+    pdf_all: '匯出全部為 PDF',
+    csv_event: '匯出為 CSV',
+    pdf_event: '匯出為 PDF',
+    filter_hint: '已套用篩選',
+  },
   stats: {
     title: '統計儀表板',
     subtitle: '歷史事件的數據概覽',
