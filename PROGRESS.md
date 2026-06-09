@@ -13,10 +13,10 @@
 | **資料庫** | SQLite (SQLAlchemy 2.0 ORM) | ✅ 完成 |
 | **爬蟲** | httpx + BeautifulSoup4 (Wikipedia API) | ✅ 完成 |
 | **API 風格** | RESTful JSON | ✅ 完成 |
-| **前端** | 靜態 SPA (待選框架) | ❌ 未開始 |
-| **地圖** | 待整合 (Leaflet / Mapbox / Maplibre) | ❌ 未開始 |
-| **時間軸** | 待開發 (vis-timeline / 自製) | ❌ 未開始 |
-| **多國語系** | 繁中/英/日/韓 (排除簡中) | ✅ 部分完成 |
+| **前端** | Vue 3 + Vite + TypeScript | ✅ 完成 |
+| **地圖** | Maplibre GL JS | ✅ 完成 |
+| **時間軸** | 自製 (依年份分組) | ✅ 完成 |
+| **多國語系** | 繁中/英/日/韓 (vue-i18n 四語系) | ✅ 完成 |
 
 ---
 
@@ -32,6 +32,7 @@
 | category | String | 分類 |
 | tags | JSON | 標籤陣列 |
 | importance | Integer | 0-100 重要程度 |
+| wiki_qid | String | WikiData Q-id (跨語言事件關聯用) |
 
 ### 多語系關聯表 (已完成)
 - **event_titles** — 多語言標題 (zh_tw/en/ja/ko)
@@ -49,9 +50,26 @@
 - 支援語言：`zh_tw` (繁中)、`en` (英文)、`ja` (日文)、`ko` (韓文)
 - **排除** `zh_cn` / `zh_hans` (簡體中文)
 - 透過 Wikimedia REST API 獲取頁面摘要
-- 透過 Wikimedia Action API 解析時間軸列表
+- 透過 Wikimedia Action API 解析時間軸列表 (parse `<li>` / `<tr>` 含日期條目)
 - 內建日期解析器 (支援多語言日期格式)
 - 分類關鍵字對照表：politics / economy / military / foreign_relations / human_rights / society / science_tech / environment
+- **Infobox 解析**：支援從 infobox HTML 提取日期、座標、圖片的結構化資料
+- **圖片提取**：透過 Action API 取得頁面圖片 URL
+- **跨語言事件關聯**：透過 WikiData Q-id 將同一事件的不同語言版本串接
+
+### WikiData 對齊模組 (`backend/crawler/wikidata.py`)
+- 批次查詢 Wikipedia 頁面對應的 WikiData Q-id
+- 批次取得 Q-id 的多語言頁面標題 (zh_tw/en/ja/ko)
+- 支援跨語言事件自動化關聯與合併
+
+### 新聞網站爬蟲 (`backend/crawler/news_crawlers.py`)
+- **BBC News** (en/GB) — 英國視角
+- **Reuters** (en/GB) — 國際通訊社
+- **NHK News** (ja/JP) — 日本視角
+- **Kyodo News** (en/JP) — 日本視角 (英語)
+- **Yonhap News** (en/KR) — 韓國視角
+- **中央社 CNA** (zh_tw/TW) — 台灣視角
+- 支援批次搜尋與單篇文章觀點提取
 
 ### 關鍵主題清單 (各語言 10-12 個主題)
 - 涵蓋：中共黨史、文革、大躍進、天安門、改革開放、人權、新疆、西藏、香港、外交關係等
@@ -97,8 +115,9 @@
 **分布**: politics 16 / economy 8 / foreign_relations 7 / military 7 / society 5 / human_rights 5 / science_tech 2
 
 天安門事件包含 TW/JP/KR/US 四國觀點。
+新增 8 組事件觀點：韓戰 (KR/US)、文革 (JP/US)、香港移交 (TW/GB)、香港反送中 (TW/US)、一帶一路 (US/JP)、COVID-19 (US/JP)、西藏騷亂 (TW/US)、台海危機 (TW/US)、南海仲裁 (TW/US)。
 
-> ✅ 資料庫已成功 seed 50 筆事件（2025-06-09）
+> ✅ 資料庫已成功 seed 50 筆事件（2026-06-09）
 
 ---
 
@@ -115,7 +134,7 @@
 | POST | `/api/events` | 新增事件 |
 | PUT | `/api/events/{id}` | 更新事件 |
 | DELETE | `/api/events/{id}` | 刪除事件 |
-| POST | `/api/crawl/start` | 啟動爬蟲 |
+| POST | `/api/crawl/start` | 啟動爬蟲 (source: `wikipedia` / `wikipedia_crosslang` / `news`) |
 | POST | `/api/seed` | 匯入 seed 資料 |
 
 ---
@@ -139,12 +158,12 @@
 - [x] **事件詳情頁** — 多語言切換、多國觀點並列比較、來源列表
 - [x] **語系切換** — Header 下拉即時切換繁中/英/日/韓
 
-### Phase 3 — 資料擴充
+### Phase 3 — 資料擴充 (已完成 ✅)
 - [x] 擴充 seed 事件至 50+ 筆（50 筆，1921-2022，7 類別）
-- [ ] 改善 Wikipedia 爬蟲精度 (支援 infobox 解析、跨語言事件關聯)
-- [ ] 增加新聞網站爬蟲來源 (BBC/Reuters/NHK/Kyodo/Yonhap/中央社)
-- [ ] 自動化多語言事件對齊 (WikiData Q-id 關聯)
-- [ ] 各國觀點爬取與整理
+- [x] 改善 Wikipedia 爬蟲精度 (支援 infobox 解析、圖片提取、跨語言事件關聯)
+- [x] 新增新聞網站爬蟲 (BBC/Reuters/NHK/Kyodo/Yonhap/中央社) — `backend/crawler/news_crawlers.py`
+- [x] 實作 WikiData Q-id 自動化多語言事件對齊 — `backend/crawler/wikidata.py`
+- [x] 各國觀點爬取與整理（新增 8 組事件觀點：韓戰/KR+US、文革/JP+US、香港移交/TW+GB、香港反送中/TW+US、一帶一路/US+JP、COVID/US+JP、西藏騷亂/TW+US、台海危機/TW+US、南海仲裁/TW+US）
 
 ### Phase 4 — 進階功能
 - [ ] 進階搜尋 (全文檢索、標籤過濾)
@@ -167,6 +186,7 @@
 ```
 china_wall/
 ├── PROGRESS.md              # 本檔案 (開發進度)
+├── docker-compose.yml       # Docker 開發環境 (backend + frontend)
 ├── backend/
 │   ├── requirements.txt
 │   ├── .env
@@ -186,36 +206,48 @@ china_wall/
 │   │       └── seed_api.py  # Seed 匯入 API
 │   └── crawler/
 │       ├── __init__.py
-│       ├── wikipedia.py     # Wikipedia 多語言爬蟲
-│       └── seed.py          # 初始事件資料
-└── frontend/
-    ├── index.html
-    ├── package.json
-    ├── vite.config.ts       # Proxy /api → :8000, @ alias
-    ├── tsconfig.json
-    ├── public/
-    └── src/
-        ├── main.ts          # Entry: router + i18n + maplibre CSS
-        ├── App.vue          # Layout: header + lang switch + router-view
-        ├── style.css        # Global styles
-        ├── types/
-        │   └── event.ts     # TypeScript interfaces + constants
-        ├── utils/
-        │   └── api.ts       # Axios instance + API functions
-        ├── router/
-        │   └── index.ts     # Routes: timeline / map / event/:id
-        ├── i18n/
-        │   ├── index.ts     # vue-i18n setup
-        │   └── locales/
-        │       ├── zh_tw.ts
-        │       ├── en.ts
-        │       ├── ja.ts
-        │       └── ko.ts
-        ├── components/      # (尚無共用元件)
-        └── pages/
-            ├── TimelinePage.vue    # ✅ 時間軸 + 篩選側欄
-            ├── MapPage.vue         # ✅ Maplibre 地圖 + 事件標記
-            └── EventDetailPage.vue # ✅ 事件詳情 + 觀點 + 來源
+│       ├── wikipedia.py         # Wikipedia 多語言爬蟲 (含 infobox/圖片/跨語言)
+│       ├── wikidata.py          # WikiData Q-id 查詢與多語言對齊
+│       ├── news_crawlers.py     # 新聞網站爬蟲 (BBC/Reuters/NHK/Kyodo/Yonhap/中央社)
+│       ├── seed.py              # 初始事件資料 (15 筆)
+│       └── extra_seed_data.py   # 擴充事件資料 (35 筆)
+├── frontend/
+│   ├── .dockerignore
+│   ├── Dockerfile
+│   ├── nginx.conf               # Production reverse proxy
+│   ├── README.md
+│   ├── index.html
+│   ├── package.json
+│   ├── dist/                    # Build 輸出
+│   ├── vite.config.ts           # Proxy /api → :8000, @ alias
+│   ├── tsconfig.json
+│   ├── tsconfig.app.json
+│   ├── tsconfig.node.json
+│   ├── .vscode/
+│   │   └── extensions.json
+│   ├── public/
+│   └── src/
+│       ├── main.ts          # Entry: router + i18n + maplibre CSS
+│       ├── App.vue          # Layout: header + lang switch + router-view
+│       ├── style.css        # Global styles
+│       ├── types/
+│       │   └── event.ts     # TypeScript interfaces + constants
+│       ├── utils/
+│       │   └── api.ts       # Axios instance + API functions
+│       ├── router/
+│       │   └── index.ts     # Routes: timeline / map / event/:id
+│       ├── i18n/
+│       │   ├── index.ts     # vue-i18n setup
+│       │   └── locales/
+│       │       ├── zh_tw.ts
+│       │       ├── en.ts
+│       │       ├── ja.ts
+│       │       └── ko.ts
+│       ├── components/      # (尚無共用元件)
+│       └── pages/
+│           ├── TimelinePage.vue    # ✅ 時間軸 + 篩選側欄
+│           ├── MapPage.vue         # ✅ Maplibre 地圖 + 事件標記
+│           └── EventDetailPage.vue # ✅ 事件詳情 + 觀點 + 來源
 ```
 
 ---
@@ -223,12 +255,21 @@ china_wall/
 ## 如何執行
 
 ```bash
-# 後端
+# Docker 開發環境（後端 + 前端）
+docker compose up -d
+# ➔ 前端：http://localhost:5173
+# ➔ 後端：http://localhost:8000
+# ➔ Swagger UI: http://localhost:8000/docs
+
+# 手動啟動（後端）
 cd backend
 pip install -r requirements.txt
 python -m app.main
-# ➔ http://localhost:8000
-# ➔ Swagger UI: http://localhost:8000/docs
+
+# 手動啟動（前端）
+cd frontend
+npm install
+npm run dev
 
 # Seed 資料庫
 python -m crawler.seed

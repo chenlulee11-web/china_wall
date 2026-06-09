@@ -118,6 +118,10 @@ SEED_EVENTS = [
         "sources": [
             {"lang": "en", "url": "https://en.wikipedia.org/wiki/Korean_War", "publisher": "Wikipedia", "reliability": 0.8},
         ],
+        "perspectives": [
+            {"country": "KR", "lang": "ko", "viewpoint": "한국 정부는 한국전쟁을 공산주의 세력의 남침으로 규정하며, 중국의 개입이 전쟁을 장기화하고 한반도 분단을 고착시켰다고 본다. 한국에서 중국은 전쟁 당시 적성국이었으며, 이는 한중 관계의 역사적 상처로 남아 있다."},
+            {"country": "US", "lang": "en", "viewpoint": "The US viewed China's intervention in the Korean War as a major escalation of the Cold War. The conflict solidified US-ROK alliance and led to long-term US military presence in South Korea. China's 'volunteer army' was seen as a challenge to US hegemony."},
+        ],
     },
     # ====== 1958-1962: Great Leap Forward ======
     {
@@ -167,6 +171,10 @@ SEED_EVENTS = [
         "location": {"lat": 35.0, "lng": 105.0, "country": "CN", "names": {"zh_tw": "中國全國", "en": "All of China", "ja": "中国全土", "ko": "중국 전역"}},
         "sources": [
             {"lang": "en", "url": "https://en.wikipedia.org/wiki/Cultural_Revolution", "publisher": "Wikipedia", "reliability": 0.8},
+        ],
+        "perspectives": [
+            {"country": "JP", "lang": "ja", "viewpoint": "日本では文化大革命を狂気の社会実験と見る向きが強く、日本のマスコミは紅衛兵の暴力的行為を克明に報道。この経験は日本の中国観に長く影を落とした。"},
+            {"country": "US", "lang": "en", "viewpoint": "The US viewed the Cultural Revolution as a catastrophic social upheaval that destabilized China and led to widespread human rights abuses. It reinforced US skepticism about communist governance."},
         ],
     },
     # ====== 1978: Reform and Opening Up ======
@@ -248,6 +256,10 @@ SEED_EVENTS = [
         "sources": [
             {"lang": "en", "url": "https://en.wikipedia.org/wiki/Handover_of_Hong_Kong", "publisher": "Wikipedia", "reliability": 0.8},
         ],
+        "perspectives": [
+            {"country": "TW", "lang": "zh_tw", "viewpoint": "台灣方面密切關注香港移交後的發展，視其為『一國兩制』的試驗場。香港的民主萎縮強化了台灣社會對中國承諾的不信任。"},
+            {"country": "GB", "lang": "en", "viewpoint": "The UK government viewed the handover as the end of empire but maintained a moral commitment to Hong Kong's democratic development. Post-handover concerns grew over the erosion of judicial independence."},
+        ],
     },
     # ====== 2001: WTO Accession ======
     {
@@ -321,6 +333,10 @@ SEED_EVENTS = [
         "sources": [
             {"lang": "en", "url": "https://en.wikipedia.org/wiki/Belt_and_Road_Initiative", "publisher": "Wikipedia", "reliability": 0.8},
         ],
+        "perspectives": [
+            {"country": "US", "lang": "en", "viewpoint": "The US has criticized BRI as a debt-trap diplomacy strategy that undermines recipient nations' sovereignty. Washington has countered with alternative infrastructure initiatives like the G7's Build Back Better World."},
+            {"country": "JP", "lang": "ja", "viewpoint": "日本はBRIに対し懐疑的で、透明性や持続可能性の欠如を批判。同時に日本主導の『自由で開かれたインド太平洋』構想や質の高いインフラ投資で対抗している。"},
+        ],
     },
     # ====== 2019: Hong Kong Protests ======
     {
@@ -346,6 +362,10 @@ SEED_EVENTS = [
         "sources": [
             {"lang": "en", "url": "https://en.wikipedia.org/wiki/2019_Hong_Kong_protests", "publisher": "Wikipedia", "reliability": 0.8},
         ],
+        "perspectives": [
+            {"country": "TW", "lang": "zh_tw", "viewpoint": "台灣社會高度關注香港反送中運動，擔憂香港的『一國兩制』失敗將成為台灣未來的一面鏡子。台灣朝野普遍聲援香港抗議者。"},
+            {"country": "US", "lang": "en", "viewpoint": "The US viewed the protests as a legitimate expression of democratic aspirations and imposed sanctions on Chinese and Hong Kong officials. The subsequent National Security Law was condemned as a betrayal of Hong Kong's autonomy."},
+        ],
     },
     # ====== 2020: COVID-19 / Wuhan Lockdown ======
     {
@@ -370,6 +390,10 @@ SEED_EVENTS = [
         "location": {"lat": 30.5928, "lng": 114.3055, "country": "CN", "names": {"zh_tw": "武漢", "en": "Wuhan", "ja": "武漢", "ko": "우한"}},
         "sources": [
             {"lang": "en", "url": "https://en.wikipedia.org/wiki/COVID-19_pandemic_in_mainland_China", "publisher": "Wikipedia", "reliability": 0.8},
+        ],
+        "perspectives": [
+            {"country": "US", "lang": "en", "viewpoint": "The US and many countries criticized China's initial cover-up of the outbreak and called for transparent investigation into the virus's origins. China's zero-COVID policy was seen as draconian yet effective in controlling case numbers."},
+            {"country": "JP", "lang": "ja", "viewpoint": "日本は武漢封鎖や中国の情報隠蔽に強い懸念を示した。中国からの渡航制限を実施し、ワクチン外交や水際対策で独自の対応を取った。中国のゼロコロナ政策は日本経済にも影響を与えた。"},
         ],
     },
     # ====== 2022: Xi Jinping Third Term ======

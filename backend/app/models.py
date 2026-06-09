@@ -21,6 +21,7 @@ class Event(Base):
     category = Column(String, index=True)
     tags = Column(JSON, default=list)
     importance = Column(Integer, default=0)  # 0-100 significance score
+    wiki_qid = Column(String, nullable=True, index=True)  # WikiData Q-id for cross-linking
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 

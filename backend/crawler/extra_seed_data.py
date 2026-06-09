@@ -467,6 +467,10 @@ EXTRA_SEED_EVENTS = [
         "sources": [
             {"lang": "en", "url": "https://en.wikipedia.org/wiki/Third_Taiwan_Strait_Crisis", "publisher": "Wikipedia", "reliability": 0.8},
         ],
+        "perspectives": [
+            {"country": "TW", "lang": "zh_tw", "viewpoint": "台灣方面視飛彈危機為中國武力威脅的直接證據，強化了台灣社會對國防自主和國際支持的需求。危機也促使台灣重新評估與美國的安全關係。"},
+            {"country": "US", "lang": "en", "viewpoint": "The US dispatched two carrier battle groups to the Taiwan Strait in a show of force, reaffirming its commitment to Taiwan's security. The crisis underscored the potential for US-China military conflict over Taiwan."},
+        ],
     },
     # ====== 1999: US bombing of Chinese Embassy in Belgrade ======
     {
@@ -563,6 +567,10 @@ EXTRA_SEED_EVENTS = [
         "location": {"lat": 29.6500, "lng": 91.1000, "country": "CN", "names": {"zh_tw": "拉薩", "en": "Lhasa", "ja": "ラサ", "ko": "라싸"}},
         "sources": [
             {"lang": "en", "url": "https://en.wikipedia.org/wiki/2008_Tibetan_unrest", "publisher": "Wikipedia", "reliability": 0.8},
+        ],
+        "perspectives": [
+            {"country": "TW", "lang": "zh_tw", "viewpoint": "台灣方面關注西藏人權狀況，認為中共的民族政策壓迫少數民族。西藏流亡政府設立在印度達蘭薩拉，持續爭取國際社會對西藏自治的支持。"},
+            {"country": "US", "lang": "en", "viewpoint": "The US government expressed deep concern over the crackdown and called for dialogue between China and the Dalai Lama. The incident further strained US-China relations ahead of the Beijing Olympics."},
         ],
     },
     # ====== 2009: Xinjiang Unrest (July 5) ======
@@ -709,6 +717,10 @@ EXTRA_SEED_EVENTS = [
         "location": {"lat": 10.0, "lng": 115.0, "country": "PH", "names": {"zh_tw": "南海（菲律賓提起仲裁）", "en": "South China Sea", "ja": "南シナ海", "ko": "남중국해"}},
         "sources": [
             {"lang": "en", "url": "https://en.wikipedia.org/wiki/Philippines_v._China", "publisher": "Wikipedia", "reliability": 0.8},
+        ],
+        "perspectives": [
+            {"country": "TW", "lang": "zh_tw", "viewpoint": "台灣雖然非仲裁案當事方，但南海爭議涉及太平島等台灣控制的島嶼。仲裁案裁決將太平島認定為『岩礁』而非『島嶼』，影響台灣的南海權益主張。"},
+            {"country": "US", "lang": "en", "viewpoint": "The US urged China to abide by the arbitration ruling and has conducted Freedom of Navigation Operations to challenge China's expansive maritime claims. The South China Sea disputes remain a key flashpoint in US-China tensions."},
         ],
     },
     # ====== 2018: Xi term limit removal / Constitutional amendment ======
