@@ -173,7 +173,7 @@
 - [x] 事件比較模式 (並排比較不同國家敘述) — 觀點區新增「並排比較/標準檢視」切換按鈕
 
 ### Phase 5 — 維運
-- [ ] 單元測試 (pytest backend, vitest frontend)
+- [x] 單元測試 (pytest backend, vitest frontend) — 19 項後端測試 + 4 項前端測試全部通過
 - [ ] PostgreSQL 遷移 (正式部署)
 - [ ] CI/CD pipeline
 - [ ] 靜態匯出功能 (PDF/CSV)
