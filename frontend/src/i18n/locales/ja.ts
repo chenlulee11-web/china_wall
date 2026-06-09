@@ -1,0 +1,50 @@
+export default {
+  nav: {
+    timeline: 'タイムライン',
+    map: '地図',
+    search: '検索',
+  },
+  timeline: {
+    title: '中共・中華人民共和国の歴史タイムライン',
+    subtitle: '1921年 — 現在',
+    all_categories: '全カテゴリー',
+    filter: 'イベントを絞り込む',
+    no_events: 'イベントが見つかりません。',
+    loading: '読み込み中...',
+  },
+  map: {
+    title: '歴史地図',
+    subtitle: '地理的視点から歴史イベントを見る',
+  },
+  event: {
+    sources: '出典',
+    perspectives: '各国の視点',
+    no_perspectives: '代替の視点はありません。',
+    back: 'タイムラインに戻る',
+    importance: '重要度',
+    category: 'カテゴリー',
+    location: '場所',
+    date_range: '期間',
+    tags: 'タグ',
+  },
+  categories: {
+    politics: '政治',
+    economy: '経済',
+    military: '軍事',
+    foreign_relations: '外交',
+    human_rights: '人権と社会',
+    society: '社会',
+    science_tech: '科学技術',
+    environment: '環境',
+    general: '一般',
+  },
+  lang: {
+    zh_tw: '繁體中文',
+    en: 'English',
+    ja: '日本語',
+    ko: '한국어',
+  },
+  search: {
+    placeholder: 'イベントを検索...',
+  },
+} as const

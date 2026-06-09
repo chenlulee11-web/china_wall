@@ -1,0 +1,50 @@
+export default {
+  nav: {
+    timeline: '타임라인',
+    map: '지도',
+    search: '검색',
+  },
+  timeline: {
+    title: '중공·중화인민공화국 역사 타임라인',
+    subtitle: '1921년 — 현재',
+    all_categories: '전체 카테고리',
+    filter: '이벤트 필터',
+    no_events: '이벤트가 없습니다.',
+    loading: '불러오는 중...',
+  },
+  map: {
+    title: '역사 지도',
+    subtitle: '지리적 관점에서 역사 이벤트 보기',
+  },
+  event: {
+    sources: '출처',
+    perspectives: '각국 관점',
+    no_perspectives: '대체 관점이 없습니다.',
+    back: '타임라인으로 돌아가기',
+    importance: '중요도',
+    category: '카테고리',
+    location: '위치',
+    date_range: '기간',
+    tags: '태그',
+  },
+  categories: {
+    politics: '정치',
+    economy: '경제',
+    military: '군사',
+    foreign_relations: '외교',
+    human_rights: '인권과 사회',
+    society: '사회',
+    science_tech: '과학기술',
+    environment: '환경',
+    general: '일반',
+  },
+  lang: {
+    zh_tw: '繁體中文',
+    en: 'English',
+    ja: '日本語',
+    ko: '한국어',
+  },
+  search: {
+    placeholder: '이벤트 검색...',
+  },
+} as const

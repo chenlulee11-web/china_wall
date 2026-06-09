@@ -1,0 +1,50 @@
+export default {
+  nav: {
+    timeline: '時間軸',
+    map: '地圖',
+    search: '搜尋',
+  },
+  timeline: {
+    title: '中共 / 中華人民共和國歷史時間軸',
+    subtitle: '1921 — 至今',
+    all_categories: '全部分類',
+    filter: '篩選事件',
+    no_events: '沒有找到事件。',
+    loading: '載入中...',
+  },
+  map: {
+    title: '歷史地圖',
+    subtitle: '以地理空間視角檢視歷史事件',
+  },
+  event: {
+    sources: '參考來源',
+    perspectives: '各國觀點',
+    no_perspectives: '尚無其他國家觀點。',
+    back: '返回時間軸',
+    importance: '重要性',
+    category: '分類',
+    location: '地點',
+    date_range: '日期範圍',
+    tags: '標籤',
+  },
+  categories: {
+    politics: '政治',
+    economy: '經濟',
+    military: '軍事',
+    foreign_relations: '外交',
+    human_rights: '人權與社會',
+    society: '社會',
+    science_tech: '科技',
+    environment: '環境',
+    general: '一般',
+  },
+  lang: {
+    zh_tw: '繁體中文',
+    en: 'English',
+    ja: '日本語',
+    ko: '한국어',
+  },
+  search: {
+    placeholder: '搜尋事件...',
+  },
+} as const

@@ -1,0 +1,50 @@
+export default {
+  nav: {
+    timeline: 'Timeline',
+    map: 'Map',
+    search: 'Search',
+  },
+  timeline: {
+    title: 'Timeline of PRC / CCP History',
+    subtitle: '1921 — Present',
+    all_categories: 'All Categories',
+    filter: 'Filter Events',
+    no_events: 'No events found.',
+    loading: 'Loading events...',
+  },
+  map: {
+    title: 'Historical Map',
+    subtitle: 'Geospatial view of historical events',
+  },
+  event: {
+    sources: 'Sources',
+    perspectives: 'Perspectives by Country',
+    no_perspectives: 'No alternative perspectives available.',
+    back: 'Back to Timeline',
+    importance: 'Significance',
+    category: 'Category',
+    location: 'Location',
+    date_range: 'Date Range',
+    tags: 'Tags',
+  },
+  categories: {
+    politics: 'Politics',
+    economy: 'Economy',
+    military: 'Military',
+    foreign_relations: 'Foreign Relations',
+    human_rights: 'Human Rights & Society',
+    society: 'Society',
+    science_tech: 'Science & Technology',
+    environment: 'Environment',
+    general: 'General',
+  },
+  lang: {
+    zh_tw: '繁體中文',
+    en: 'English',
+    ja: '日本語',
+    ko: '한국어',
+  },
+  search: {
+    placeholder: 'Search events...',
+  },
+} as const
