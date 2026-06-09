@@ -2,7 +2,7 @@ from datetime import date
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy import cast, or_, String
+from sqlalchemy import cast, func, or_, String
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import joinedload
 
@@ -167,7 +167,7 @@ def list_languages(db: Session = Depends(get_db)):
 def event_stats(db: Session = Depends(get_db)):
     total = db.query(Event).count()
 
-    categories = db.query(Event.category, db.func.count(Event.id)).group_by(Event.category).all()
+    categories = db.query(Event.category, func.count(Event.id)).group_by(Event.category).all()
     category_dist = {cat or "uncategorized": cnt for cat, cnt in categories}
 
     all_events = db.query(Event.date).all()
