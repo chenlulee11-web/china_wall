@@ -11,6 +11,7 @@ const { locale } = useI18n()
 
 const event = ref<EventDetail | null>(null)
 const loading = ref(true)
+const compareMode = ref(false)
 
 const title = computed(() => {
   if (!event.value) return ''
@@ -92,11 +93,28 @@ onMounted(async () => {
 
       <!-- Perspectives -->
       <div v-if="event.perspectives.length > 0" class="detail-section">
-        <h2>{{ $t('event.perspectives') }}</h2>
-        <div v-for="p in event.perspectives" :key="p.id" class="perspective-card">
-          <div class="perspective-country">{{ countryLabels[p.country_code] || p.country_code }}</div>
-          <div class="perspective-text">{{ p.viewpoint }}</div>
+        <div class="section-header">
+          <h2>{{ $t('event.perspectives') }}</h2>
+          <button v-if="event.perspectives.length > 1" class="compare-toggle" @click="compareMode = !compareMode">
+            {{ compareMode ? $t('event.standard_view') : $t('event.compare_view') }}
+          </button>
         </div>
+
+        <!-- Comparison Grid -->
+        <div v-if="compareMode" class="compare-grid">
+          <div v-for="p in event.perspectives" :key="p.id" class="compare-column">
+            <div class="compare-country">{{ countryLabels[p.country_code] || p.country_code }}</div>
+            <div class="compare-text">{{ p.viewpoint }}</div>
+          </div>
+        </div>
+
+        <!-- Standard Stacked View -->
+        <template v-else>
+          <div v-for="p in event.perspectives" :key="p.id" class="perspective-card">
+            <div class="perspective-country">{{ countryLabels[p.country_code] || p.country_code }}</div>
+            <div class="perspective-text">{{ p.viewpoint }}</div>
+          </div>
+        </template>
       </div>
       <div v-else class="detail-section">
         <p class="page-subtitle">{{ $t('event.no_perspectives') }}</p>
@@ -118,3 +136,60 @@ onMounted(async () => {
     </template>
   </div>
 </template>
+
+<style scoped>
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--color-border);
+}
+.section-header h2 {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.compare-toggle {
+  font-size: 13px;
+  padding: 4px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.compare-toggle:hover {
+  background: var(--color-tag);
+}
+
+/* Comparison Grid */
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.compare-column {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.compare-country {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+.compare-text {
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+</style>

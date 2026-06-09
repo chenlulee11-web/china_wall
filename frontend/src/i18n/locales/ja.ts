@@ -2,6 +2,8 @@ export default {
   nav: {
     timeline: 'タイムライン',
     map: '地図',
+    tours: 'テーマツアー',
+    dashboard: '統計',
     search: '検索',
   },
   timeline: {
@@ -11,6 +13,7 @@ export default {
     filter: 'イベントを絞り込む',
     no_events: 'イベントが見つかりません。',
     loading: '読み込み中...',
+    show_on_map: '地図で表示',
   },
   map: {
     title: '歴史地図',
@@ -26,6 +29,8 @@ export default {
     location: '場所',
     date_range: '期間',
     tags: 'タグ',
+    compare_view: '並べて比較',
+    standard_view: '標準表示',
   },
   categories: {
     politics: '政治',
@@ -46,5 +51,33 @@ export default {
   },
   search: {
     placeholder: 'イベントを検索...',
+    no_results: '条件に一致する結果がありません。フィルターを調整してください。',
+    clear: 'すべてのフィルターをクリア',
+  },
+  tour: {
+    title: 'テーマツアー',
+    subtitle: 'テーマ別に歴史イベントを探索',
+    back: 'ツアー一覧に戻る',
+    no_events: 'このツアーにはイベントがありません。',
+    events_found: '件のイベント',
+    ccp_founding: '建党から建国へ (1921-1949)',
+    ccp_founding_desc: '中国共産党成立、国共内戦、抗日戦争から中華人民共和国成立まで',
+    reform_opening: '改革開放と近代化 (1978-2010)',
+    reform_opening_desc: '鄧小平の改革開放、経済特区、市場経済から世界の工場へ',
+    human_rights: '人権の重要イベント (1957-2022)',
+    human_rights_desc: '反右派運動から天安門事件、香港抗議まで',
+    foreign_relations: '中国と世界 (1950-2020)',
+    foreign_relations_desc: '朝鮮戦争、米中関係、一带一路から貿易戦争へ',
+    economic_milestones: '経済の重要節目 (1958-2022)',
+    economic_milestones_desc: '大躍進、改革開放、GDP世界2位から恒大危機まで',
+  },
+  stats: {
+    title: '統計ダッシュボード',
+    subtitle: '歴史イベントのデータ概要',
+    total_events: '総イベント数',
+    categories_count: 'カテゴリー数',
+    decades_count: '年代数',
+    category_distribution: 'カテゴリー分布',
+    decade_distribution: '年代分布',
   },
 } as const

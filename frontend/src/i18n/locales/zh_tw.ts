@@ -2,6 +2,8 @@ export default {
   nav: {
     timeline: '時間軸',
     map: '地圖',
+    tours: '主題遊覽',
+    dashboard: '統計',
     search: '搜尋',
   },
   timeline: {
@@ -11,6 +13,7 @@ export default {
     filter: '篩選事件',
     no_events: '沒有找到事件。',
     loading: '載入中...',
+    show_on_map: '在地圖上顯示',
   },
   map: {
     title: '歷史地圖',
@@ -26,6 +29,8 @@ export default {
     location: '地點',
     date_range: '日期範圍',
     tags: '標籤',
+    compare_view: '並排比較',
+    standard_view: '標準檢視',
   },
   categories: {
     politics: '政治',
@@ -46,5 +51,33 @@ export default {
   },
   search: {
     placeholder: '搜尋事件...',
+    no_results: '沒有符合條件的結果，請嘗試調整篩選條件。',
+    clear: '清除所有篩選',
+  },
+  tour: {
+    title: '主題遊覽路線',
+    subtitle: '依主題探索歷史事件脈絡',
+    back: '返回路線列表',
+    no_events: '此路線暫無事件資料。',
+    events_found: '個事件',
+    ccp_founding: '從建黨到建國 (1921-1949)',
+    ccp_founding_desc: '中國共產黨成立、國共內戰、抗日戰爭到中華人民共和國建立',
+    reform_opening: '改革開放與現代化 (1978-2010)',
+    reform_opening_desc: '鄧小平改革開放、經濟特區、市場經濟到成為世界工廠',
+    human_rights: '人權關鍵事件 (1957-2022)',
+    human_rights_desc: '從反右運動到六四天安門、香港抗爭等人權重大事件',
+    foreign_relations: '中國與世界 (1950-2020)',
+    foreign_relations_desc: '韓戰、中美關係、一帶一路到貿易戰的外交演變',
+    economic_milestones: '經濟重大里程碑 (1958-2022)',
+    economic_milestones_desc: '大躍進、改革開放、GDP超日本到恒大危機',
+  },
+  stats: {
+    title: '統計儀表板',
+    subtitle: '歷史事件的數據概覽',
+    total_events: '總事件數',
+    categories_count: '分類數',
+    decades_count: '涵蓋年代',
+    category_distribution: '類別分布',
+    decade_distribution: '年代分布',
   },
 } as const

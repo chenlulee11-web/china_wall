@@ -2,6 +2,8 @@ export default {
   nav: {
     timeline: 'Timeline',
     map: 'Map',
+    tours: 'Tours',
+    dashboard: 'Statistics',
     search: 'Search',
   },
   timeline: {
@@ -11,6 +13,7 @@ export default {
     filter: 'Filter Events',
     no_events: 'No events found.',
     loading: 'Loading events...',
+    show_on_map: 'Show on map',
   },
   map: {
     title: 'Historical Map',
@@ -26,6 +29,8 @@ export default {
     location: 'Location',
     date_range: 'Date Range',
     tags: 'Tags',
+    compare_view: 'Side-by-Side',
+    standard_view: 'Standard View',
   },
   categories: {
     politics: 'Politics',
@@ -46,5 +51,33 @@ export default {
   },
   search: {
     placeholder: 'Search events...',
+    no_results: 'No results match your filters. Try adjusting them.',
+    clear: 'Clear all filters',
+  },
+  tour: {
+    title: 'Thematic Tours',
+    subtitle: 'Explore historical events by theme',
+    back: 'Back to tours',
+    no_events: 'No events available for this tour.',
+    events_found: 'events',
+    ccp_founding: 'From Founding to PRC (1921-1949)',
+    ccp_founding_desc: 'CCP founding, civil wars, anti-Japanese war to the establishment of PRC',
+    reform_opening: 'Reform & Modernization (1978-2010)',
+    reform_opening_desc: 'Deng Xiaoping\'s reforms, SEZs, market economy to becoming the world\'s factory',
+    human_rights: 'Human Rights Milestones (1957-2022)',
+    human_rights_desc: 'From anti-rightist campaign to Tiananmen, Hong Kong protests',
+    foreign_relations: 'China & The World (1950-2020)',
+    foreign_relations_desc: 'Korean War, US-China relations, Belt & Road to trade war',
+    economic_milestones: 'Economic Milestones (1958-2022)',
+    economic_milestones_desc: 'Great Leap Forward, reform, GDP surpassing Japan to Evergrande crisis',
+  },
+  stats: {
+    title: 'Statistics Dashboard',
+    subtitle: 'Data overview of historical events',
+    total_events: 'Total Events',
+    categories_count: 'Categories',
+    decades_count: 'Decades',
+    category_distribution: 'Category Distribution',
+    decade_distribution: 'Decade Distribution',
   },
 } as const

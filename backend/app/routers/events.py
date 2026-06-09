@@ -2,7 +2,7 @@ from datetime import date
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy import or_
+from sqlalchemy import cast, or_, String
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import joinedload
 
@@ -61,6 +61,7 @@ def list_events(
     date_from: Optional[date] = Query(None),
     date_to: Optional[date] = Query(None),
     importance_min: Optional[int] = Query(None),
+    tags: Optional[str] = Query(None),
     limit: int = Query(100, le=500),
     offset: int = Query(0, ge=0),
     db: Session = Depends(get_db),
@@ -80,6 +81,11 @@ def list_events(
         query = query.filter(Event.date <= date_to)
     if importance_min is not None:
         query = query.filter(Event.importance >= importance_min)
+    if tags:
+        tag_list = [t.strip() for t in tags.split(",") if t.strip()]
+        for tag in tag_list:
+            query = query.filter(cast(Event.tags, String).contains(f'"{tag}"'))
+
     if q:
         search_term = f"%{q}%"
         query = query.join(EventTitle).filter(
@@ -155,6 +161,38 @@ def list_categories(db: Session = Depends(get_db)):
 def list_languages(db: Session = Depends(get_db)):
     results = db.query(EventTitle.language).distinct().all()
     return sorted(set(r[0] for r in results if r[0]))
+
+
+@router.get("/stats")
+def event_stats(db: Session = Depends(get_db)):
+    total = db.query(Event).count()
+
+    categories = db.query(Event.category, db.func.count(Event.id)).group_by(Event.category).all()
+    category_dist = {cat or "uncategorized": cnt for cat, cnt in categories}
+
+    all_events = db.query(Event.date).all()
+    decades: dict[str, int] = {}
+    for (d,) in all_events:
+        decade = f"{(d.year // 10) * 10}s"
+        decades[decade] = decades.get(decade, 0) + 1
+    decade_dist = dict(sorted(decades.items()))
+
+    return {
+        "total": total,
+        "categories": category_dist,
+        "decades": decade_dist,
+    }
+
+
+@router.get("/tags")
+def list_tags(db: Session = Depends(get_db)):
+    results = db.query(Event.tags).all()
+    tags: set[str] = set()
+    for (row,) in results:
+        if row:
+            for tag in row:
+                tags.add(tag)
+    return sorted(tags)
 
 
 @router.get("/{event_id}")

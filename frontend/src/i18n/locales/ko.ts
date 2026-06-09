@@ -2,6 +2,8 @@ export default {
   nav: {
     timeline: '타임라인',
     map: '지도',
+    tours: '테마 투어',
+    dashboard: '통계',
     search: '검색',
   },
   timeline: {
@@ -11,6 +13,7 @@ export default {
     filter: '이벤트 필터',
     no_events: '이벤트가 없습니다.',
     loading: '불러오는 중...',
+    show_on_map: '지도에서 보기',
   },
   map: {
     title: '역사 지도',
@@ -26,6 +29,8 @@ export default {
     location: '위치',
     date_range: '기간',
     tags: '태그',
+    compare_view: '나란히 비교',
+    standard_view: '표준 보기',
   },
   categories: {
     politics: '정치',
@@ -46,5 +51,33 @@ export default {
   },
   search: {
     placeholder: '이벤트 검색...',
+    no_results: '조건에 맞는 결과가 없습니다. 필터를 조정해 보세요.',
+    clear: '모든 필터 지우기',
+  },
+  tour: {
+    title: '테마 투어',
+    subtitle: '테마별 역사 이벤트 탐험',
+    back: '투어 목록으로',
+    no_events: '이 투어에 이벤트가 없습니다.',
+    events_found: '개 이벤트',
+    ccp_founding: '창당부터 건국까지 (1921-1949)',
+    ccp_founding_desc: '중국공산당 창립, 국공내전, 항일전쟁에서 중화인민공화국 수립까지',
+    reform_opening: '개혁개방과 현대화 (1978-2010)',
+    reform_opening_desc: '덩샤오핑의 개혁개방, 경제특구, 시장경제에서 세계의 공장으로',
+    human_rights: '인권 주요 사건 (1957-2022)',
+    human_rights_desc: '반우파 운동부터 톈안먼 사건, 홍콩 항쟁까지',
+    foreign_relations: '중국과 세계 (1950-2020)',
+    foreign_relations_desc: '한국전쟁, 미중 관계, 일대일로에서 무역전쟁까지',
+    economic_milestones: '경제 주요 이정표 (1958-2022)',
+    economic_milestones_desc: '대약진, 개혁개방, GDP 세계 2위에서 헝다 위기까지',
+  },
+  stats: {
+    title: '통계 대시보드',
+    subtitle: '역사 이벤트 데이터 개요',
+    total_events: '총 이벤트',
+    categories_count: '카테고리 수',
+    decades_count: '포함된 연대',
+    category_distribution: '카테고리 분포',
+    decade_distribution: '연대 분포',
   },
 } as const

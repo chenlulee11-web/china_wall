@@ -20,6 +20,8 @@ watch(locale, (val) => {
     <nav>
       <router-link to="/timeline">{{ $t('nav.timeline') }}</router-link>
       <router-link to="/map">{{ $t('nav.map') }}</router-link>
+      <router-link to="/tours">{{ $t('nav.tours') }}</router-link>
+      <router-link to="/dashboard">{{ $t('nav.dashboard') }}</router-link>
     </nav>
     <div class="controls">
       <select class="lang-select" v-model="locale">

@@ -11,6 +11,7 @@ export interface FetchEventsParams {
   category?: string
   country?: string
   q?: string
+  tags?: string
   date_from?: string
   date_to?: string
   importance_min?: number
@@ -45,6 +46,22 @@ export async function fetchCategories(): Promise<string[]> {
 
 export async function fetchLanguages(): Promise<string[]> {
   const res = await api.get<string[]>('/events/languages')
+  return res.data
+}
+
+export async function fetchTags(): Promise<string[]> {
+  const res = await api.get<string[]>('/events/tags')
+  return res.data
+}
+
+export interface EventStats {
+  total: number
+  categories: Record<string, number>
+  decades: Record<string, number>
+}
+
+export async function fetchStats(): Promise<EventStats> {
+  const res = await api.get<EventStats>('/events/stats')
   return res.data
 }
 

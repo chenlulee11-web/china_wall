@@ -15,6 +15,16 @@ const router = createRouter({
       component: () => import('@/pages/MapPage.vue'),
     },
     {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: () => import('@/pages/DashboardPage.vue'),
+    },
+    {
+      path: '/tours',
+      name: 'Tours',
+      component: () => import('@/pages/ToursPage.vue'),
+    },
+    {
       path: '/event/:id',
       name: 'EventDetail',
       component: () => import('@/pages/EventDetailPage.vue'),
